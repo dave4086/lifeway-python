@@ -1,4 +1,4 @@
-# lifeway-python
+## lifeway-python
 
 Local Testing Notes:
 
@@ -14,3 +14,9 @@ After app is running, POST to http://localhost:5001/api/messages with JSON body 
 
 If that ID doesn't exist, it should write to the database and return a count of words in the message field.
 If the ID does exist, it should return a warning about that ID already existing.
+
+
+# To-do
+- Add tests and see about CircleCI build
+- Configure AWS deployment pipeline
+- Refactor some sloppy code
