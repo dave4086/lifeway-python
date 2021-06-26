@@ -85,6 +85,7 @@ class MessageManager(Resource):
 api.add_resource(MessageManager, '/api/messages')
 
 if __name__ == "__main__":
-  app.run(debug=True)
+  app.run(debug=True, host='0.0.0.0')
+  #dropping entire DB and creating on app run, managing state out of my scope for this challenge
   db.drop_all()
   db.create_all()
