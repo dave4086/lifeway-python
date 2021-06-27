@@ -2,7 +2,13 @@
 
 Local Testing Notes:
 
-Docker build command :
+First, clone the repository to your directory of choice. The clone command is below:
+```
+git clone https://github.com/dave4086/lifeway-python.git
+```
+You'll need [Docker](https://docs.docker.com/get-docker/) to run the container locally.
+
+Docker build command (run from project root) :
 ```
 docker build -f Dockerfile -t lifeway-python:latest .
 ```
@@ -13,10 +19,14 @@ docker run -p 5000:5000 lifeway-python
 
 After app is running, POST to http://localhost:5000/api/messages with JSON body like below.
 
+```json
 {
     "id": "2",
     "message": "test test test"
 }
+```
+
+You can also do a GET request to the same API, it will display a list of all the message objects in the Database (Database is emptied at every startup).
 
 If that ID doesn't exist, it should write to the database and return a count of words in the message field.
 If the ID does exist, it should return a warning about that ID already existing.
