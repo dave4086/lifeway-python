@@ -1,0 +1,22 @@
+{
+    "family": "lifeway-app-service",
+    "containerDefinitions": [
+        {
+            "name": "lifeway-app-service",
+            "image": "875796817838.dkr.ecr.us-west-2.amazonaws.com/lifeway-app:latest",
+            "cpu": 128,
+            "memoryReservation": 128,
+            "portMappings": [
+                {
+                    "containerPort": 5000,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "command": [
+                "python,/app/app.py"
+            ],
+            "essential": true
+        }
+    ]
+}

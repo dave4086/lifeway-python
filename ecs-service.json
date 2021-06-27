@@ -1,0 +1,14 @@
+{
+    "cluster": "lifeway-app-cluster",
+    "serviceName": "lifeway-app-service",
+    "taskDefinition": "lifeway-app-service",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-west-2:875796817838:loadbalancer/app/lifeway-app/c4ffdd52c6e0f3c7",
+            "containerName": "lifeway-app-service",
+            "containerPort": 5000
+        }
+    ],
+    "desiredCount": 1,
+    "role": "ecsServiceRole"
+}
