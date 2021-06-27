@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   aws-ecr: circleci/aws-ecr@6.7.0
+  aws-ecs: circleci/aws-ecs@2.2.1  
 
 workflows:
   build_and_push_image:
@@ -14,5 +15,11 @@ workflows:
           dockerfile: Dockerfile
           path: .
           region: AWS_REGION
-          repo: circleci-ecr-orb-demo
+          repo: lifeway-app
           tag: "$CIRCLE_SHA1"
+      - aws-ecs/deploy-service-update:
+          cluster-name: '${MY_APP_PREFIX}-cluster'
+          container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
+          family: '${MY_APP_PREFIX}-service'
+          requires:
+            - aws-ecr/build-and-push-image
