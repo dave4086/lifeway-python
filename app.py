@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Resource, Api
@@ -27,12 +27,14 @@ class Message(db.Model):
         self.message = message
         self.count = count
   
-
+#Declaring a marshmallow schema, mapping attributes - see below for info
+#https://marshmallow.readthedocs.io/en/stable/quickstart.html#declaring-schemas
 class MessageSchema(ma.Schema):
     class Meta: 
         fields = ('id', 'message', 'count')
 message_schema = MessageSchema()
 messages_schema = MessageSchema(many=True)        
+
 
 class MessageManager(Resource):
 
@@ -80,11 +82,14 @@ class MessageManager(Resource):
     def delete():     
         return jsonify('I would rather you not delete anything, the database has been through enough already')    
         
-
+@app.route('/')
+def home():
+    return render_template("index.html")
 
 api.add_resource(MessageManager, '/api/messages')
 
 if __name__ == "__main__":
+  #adding 0.0.0.0 was quick and easy way to access my app while in a docker container but i'm sure there are security implications 
   app.run(debug=True, host='0.0.0.0')
   #dropping entire DB and creating on app run, managing state out of my scope for this challenge
   db.drop_all()
