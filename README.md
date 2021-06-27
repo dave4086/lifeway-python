@@ -25,6 +25,8 @@ To test the AWS deployment the following POSTMAN tests should suffice.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/16387030-9364dab5-d6bb-491c-b766-1a71856b8117?action=collection%2Ffork&collection-url=entityId%3D16387030-9364dab5-d6bb-491c-b766-1a71856b8117%26entityType%3Dcollection%26workspaceId%3D81a6d3be-b965-44ff-a577-4f7cb4f56f09)
 
+You should see an option to "View collection" - this will open a public workspace where there is a GET and a POST test set up for ease of testing. The URL should be configured to point at the AWS application load balancer DNS.
+
 
 
 
