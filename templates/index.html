@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Lifeway Challenge - David Vaught</title>
-  </head>
-  <body>    
-    
-    <h1> The below button will get the message objects in the database.</h1>
-    <form action="/api/messages" method="get">
-        <button name="messageBtn" type="submit">Display Messages</button>
-    </form>    
-  
-  </body>
+<html lang="en">
+<head>
+  <title>David's Python Lifeway Challenge</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+  <h1>Messages currently stored in the DB can be seen below.</h1>
+<table id="messages" class="cell-border compact stripe" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Message</th>
+                <th>Count</th>                
+            </tr>
+        </thead>        
+    </table>
+<script>
+function setupData() {
+  $(document).ready(function() {
+           $('#messages').dataTable( {
+            "ajax": {
+                "url": "/api/messages", 
+                "dataType": "json",             
+                "contentType":"application/json",
+                "dataSrc":""
+            },
+            "columns": [
+                {"data": "id"},
+                {"data": "message"},
+                {"data": "count"}
+            ],
+            "columnDefs": [
+                {"className": "dt-center", "targets": "_all"}
+              ]               
+           } );
+        } );
+}
+$( window ).on( "load", setupData );
+</script>
+</body>
 </html>

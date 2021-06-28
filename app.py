@@ -6,6 +6,7 @@ from sqlalchemy import func
 from flask_migrate import Migrate
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import HTTPException, default_exceptions
+import json
 
 #initializing
 
@@ -91,10 +92,17 @@ class MessageManager(Resource):
     @staticmethod
     def delete():     
         return jsonify('I would rather you not delete anything, the database has been through enough already')    
-        
+
+
 @app.route('/')
 def home():
     return render_template("index.html")
+
+@app.route('/show_messages')
+def show_messages():
+    return jsonify('Testing')
+ 
+  
 
 api.add_resource(MessageManager, '/api/messages')
 
