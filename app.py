@@ -6,7 +6,7 @@ from sqlalchemy import func
 from flask_migrate import Migrate
 from sqlalchemy.exc import IntegrityError
 
-
+#initializing
 
 app = Flask(__name__)
 api = Api(app)
