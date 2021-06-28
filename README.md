@@ -53,4 +53,5 @@ Used the following Python libraries
 - AWS Infrastructure configs could be exported for IAC tools
 - Automated Testing using Pytest in the CircleCI build/deploy pipeline
 - General code cleanliness improvements
+- Could break down into microservice of API only using AWS API Gateway/Lambda, static web hosted on S3, DynamoDB backend
 
