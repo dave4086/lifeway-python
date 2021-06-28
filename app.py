@@ -5,8 +5,6 @@ from flask_restful import Resource, Api
 from sqlalchemy import func
 from flask_migrate import Migrate
 from sqlalchemy.exc import IntegrityError
-from werkzeug.exceptions import HTTPException, default_exceptions
-import json
 
 #initializing
 
@@ -45,7 +43,7 @@ class MessageManager(Resource):
         messages_list = Message.query.all()
         result = messages_schema.dump(messages_list)
         return jsonify(result)
-      #  return jsonify({'Message': 'I would really rather you use a POST'})
+      
 
     @staticmethod
     def post():
@@ -97,12 +95,6 @@ class MessageManager(Resource):
 @app.route('/')
 def home():
     return render_template("index.html")
-
-@app.route('/show_messages')
-def show_messages():
-    return jsonify('Testing')
- 
-  
 
 api.add_resource(MessageManager, '/api/messages')
 
