@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Resource, Api
 from sqlalchemy import func
 from flask_migrate import Migrate
 from sqlalchemy.exc import IntegrityError
+from werkzeug.exceptions import HTTPException, default_exceptions
 
 #initializing
 
@@ -51,8 +52,17 @@ class MessageManager(Resource):
         #printing out request for debugging purposes
         print(req_data)
         #set variables from JSON
-        id = request.json['id']
-        messageText = request.json['message']
+        #adding error handling for invalid JSON
+        try:
+            id = request.json['id']
+        except KeyError:
+            abort(400, "ID is a required key")
+        try:
+            messageText = request.json['message']
+        except KeyError:
+            abort(400, "Message is a required key")
+        
+        
         #logic to count number of whitespace separated words in the message
         countval = len(messageText.split())
         #passes the newly set variables as parameters to the Message DB class
