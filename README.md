@@ -49,9 +49,11 @@ Used the following Python libraries
 - [Flask-Marshmallow](https://flask-marshmallow.readthedocs.io/en/latest/)
 
 ## Improvement Opportunities
-- Implement Docker orchestration and build a Postgres or MongoDB container. 
+- Implement Docker orchestration and build a Postgres or MongoDB container
 - AWS Infrastructure configs could be exported for IAC tools
+- AWS security roles/policies are currently very lax in the VPC, if hosting any sort of meaningful data would have to change
 - Automated Testing using Pytest in the CircleCI build/deploy pipeline
 - General code cleanliness improvements
 - Could break down into microservice of API only using AWS API Gateway/Lambda, static web hosted on S3, DynamoDB backend
+- Automate security testing in pipeline with tools like Snyk
 
